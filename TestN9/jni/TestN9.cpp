@@ -47,13 +47,19 @@ void test_dlopen(JNIEnv* env, jclass clazz)
     DEBUG_LOG("test dlopen");
     call_test();
 
-    bool ret = hook_export_function("libmono.so",
-            "mono_image_open_from_data_with_name",
-            (void*)my_mono_image_open_from_data_with_name,
-            (void**)&origin_mono_image_open_from_data_with_name
-    );
+    static bool hooked = false;
 
-    DEBUG_LOG("hook %s", ret?"success":"fail");
+    if (!hooked)
+    {
+        hooked = hook_export_function("libmono.so",
+                    "mono_image_open_from_data_with_name",
+                    (void*)my_mono_image_open_from_data_with_name,
+                    (void**)&origin_mono_image_open_from_data_with_name
+            );
+
+        DEBUG_LOG("hook %s", hooked?"success":"fail");
+    }
+
 
     // mono_image_open_from_data_with_name(NULL,0,0,0,0,0);
     call_test();
