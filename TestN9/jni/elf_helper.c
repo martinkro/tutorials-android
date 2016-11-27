@@ -1,4 +1,5 @@
 #include "elf_helper.h"
+#include "log.h"
 
 #include <string.h>
 
@@ -6,6 +7,9 @@ ElfW(Sym)* dlsym_handle_lookup(soinfo* si, const char* name)
 {
     ElfW(Sym)* symtab = si->symtab;
     const char* strtab = si->strtab;
+
+    DEBUG_LOG("symtab addr:%p", symtab);
+    DEBUG_LOG("strtab addr:%p", strtab);
 
     unsigned int i;
     for (i = 0; i < si->nbucket; i++)

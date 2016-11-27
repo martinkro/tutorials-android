@@ -51,6 +51,11 @@ void test_dlopen(JNIEnv* env, jclass clazz)
 
     if (!hooked)
     {
+        hook_export_function2("libmono.so",
+                            "mono_image_open_from_data_with_name",
+                            (void*)my_mono_image_open_from_data_with_name,
+                            (void**)&origin_mono_image_open_from_data_with_name
+                    );
         hooked = hook_export_function("libmono.so",
                     "mono_image_open_from_data_with_name",
                     (void*)my_mono_image_open_from_data_with_name,
