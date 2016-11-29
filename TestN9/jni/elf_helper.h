@@ -41,6 +41,13 @@ typedef struct _soinfo soinfo;
 
 ElfW(Sym)* dlsym_handle_lookup(soinfo* si, const char* name);
 
+void phdr_table_get_dynamic_section(const Elf32_Phdr* phdr_table,
+        int phdr_count,
+        Elf32_Addr load_bias,
+        Elf32_Dyn** dynamic,
+        size_t* dynamic_count,
+        Elf32_Word* dynamic_flags);
+
 struct _soinfo
 {
     char name[SOINFO_NAME_LEN];

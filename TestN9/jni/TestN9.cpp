@@ -45,6 +45,18 @@ void call_test()
 void test_dlopen(JNIEnv* env, jclass clazz)
 {
     DEBUG_LOG("test dlopen");
+
+#if defined(__i386__)
+    DEBUG_LOG("i386");
+#endif
+
+#if defined(__arm__)
+    DEBUG_LOG("arm-v7a");
+#endif
+
+#if defined(__arm64__)||defined(__aarch64__)
+    DEBUG_LOG("arm64");
+#endif
     call_test();
 
     static bool hooked = false;

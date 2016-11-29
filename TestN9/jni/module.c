@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
+//SCNx64
+uint64_t x;
+
 uintptr_t get_image_base(const char* module_name)
 {
     uintptr_t base = 0;
@@ -29,7 +32,7 @@ uintptr_t get_image_base(const char* module_name)
 
 
                 if (strstr(filename, module_name) != NULL){
-                    DEBUG_LOG("%x-%x %c%c%c%c %08x %d:%d %d %s",
+                    DEBUG_LOG("%lx-%lx %c%c%c%c %08x %d:%d %d %s",
                                                                 start,
                                                                 end,
                                                                 read,
@@ -42,13 +45,16 @@ uintptr_t get_image_base(const char* module_name)
                                                                 inode,
                                                                 filename
                                                         );
-                    DEBUG_LOG("line:%s", line);
+
                     DEBUG_LOG("[++++++++++++++++++]");
+                    DEBUG_LOG("line:%s", line);
+                    /*
                     char out_name[512];
-                    snprintf(out_name, sizeof(out_name), "/data/local/tmp/%08x-%08x.dat", start,end);
+                    snprintf(out_name, sizeof(out_name), "/data/local/tmp/%lx-%lx.dat", start,end);
                     FILE* f = fopen(out_name, "wb");
                     fwrite((void*)start, 1, end-start, f);
                     fclose(f);
+                    */
                     if (base == 0)
                     {
                         base = start;
