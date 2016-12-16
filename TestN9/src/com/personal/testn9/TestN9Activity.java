@@ -12,6 +12,7 @@ public class TestN9Activity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Native.testHello();
         setContentView(R.layout.activity_test_n9);
         findViewById(R.id.btn_test_dlopen).setOnClickListener(this);
     }

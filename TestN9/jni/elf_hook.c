@@ -31,7 +31,7 @@ bool hook_export_function(
     if (addr == NULL)
     {
         ERROR_LOG("dlsym %s fail", function_name);
-        dlclose(handle);
+        //dlclose(handle);
         return result;
     }
 
@@ -73,7 +73,7 @@ bool hook_export_function(
 
     }
 
-    dlclose(handle);
+    //dlclose(handle);
 
     return result;
 }
@@ -108,7 +108,7 @@ bool hook_export_function2(
     {
         soinfo* si = (soinfo*)handle;
         DEBUG_LOG("[2]%s image base:%08x", module_name, si->base);
-        dlclose(handle);
+        //dlclose(handle);
     }
 
     DEBUG_LOG("[2]%s image base:%08x", module_name, image_base);

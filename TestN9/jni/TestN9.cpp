@@ -42,6 +42,11 @@ void call_test()
     }
 }
 
+void test_hello(JNIEnv* env, jclass clazz)
+{
+    DEBUG_LOG("test hello ...");
+}
+
 void test_dlopen(JNIEnv* env, jclass clazz)
 {
     DEBUG_LOG("test dlopen");
@@ -57,17 +62,19 @@ void test_dlopen(JNIEnv* env, jclass clazz)
 #if defined(__arm64__)||defined(__aarch64__)
     DEBUG_LOG("arm64");
 #endif
-    call_test();
+    //call_test();
 
     static bool hooked = false;
 
     if (!hooked)
     {
+        /*
         hook_export_function2("libmono.so",
                             "mono_image_open_from_data_with_name",
                             (void*)my_mono_image_open_from_data_with_name,
                             (void**)&origin_mono_image_open_from_data_with_name
                     );
+        */
         hooked = hook_export_function("libmono.so",
                     "mono_image_open_from_data_with_name",
                     (void*)my_mono_image_open_from_data_with_name,
@@ -84,7 +91,8 @@ void test_dlopen(JNIEnv* env, jclass clazz)
 }
 
 static JNINativeMethod g_native_methods[] = {
-        {"testDlopen", "()V", (void*)test_dlopen}
+        {"testDlopen", "()V", (void*)test_dlopen},
+        {"testHello", "()V", (void*)test_hello}
 };
 
 jint JNI_OnLoad(JavaVM* vm, void* reserved)

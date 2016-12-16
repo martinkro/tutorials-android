@@ -1,6 +1,7 @@
 #include "mono.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "test.h"
 
 #include "log.h"
 
@@ -26,6 +27,19 @@ MONO_API MonoAssembly* mono_assembly_load_from_full(
     DEBUG_LOG("mono_assembly_load_from_full ...");
     return NULL;
 }
+
+/*
+extern void _init()
+{
+    DEBUG_LOG("mono init xxxx...");
+    typedef void(*pfn_test_close)();
+    pfn_test_close pfn = (pfn_test_close)g_func_array.test_fclose;
+    if (pfn != NULL)
+    {
+        pfn();
+    }
+}
+*/
 
 
 
