@@ -15,5 +15,11 @@
         android:layout_height="wrap_content"
         android:text="@string/test_dlopen"
         />
+    <TextView 
+        android:id="@+id/tv_uuid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_test_dlopen"
+        />
 
 </RelativeLayout>

@@ -1,10 +1,10 @@
 LOCAL_PATH := $(call my-dir)
 
 
-include $(CLEAR_VARS)
-LOCAL_MODULE:= mono
-LOCAL_SRC_FILES:=lib/$(TARGET_ARCH_ABI)/libmono.so
-include $(PREBUILT_SHARED_LIBRARY)
+#include $(CLEAR_VARS)
+#LOCAL_MODULE:= mono
+#LOCAL_SRC_FILES:=lib/$(TARGET_ARCH_ABI)/libmono.so
+#include $(PREBUILT_SHARED_LIBRARY)
 
 
 include $(CLEAR_VARS)
@@ -18,7 +18,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_ARM_NEON := true
-LOCAL_MODULE    := xono
+LOCAL_MODULE    := mono
 LOCAL_SRC_FILES := mono.c arena.c.neon
 LOCAL_LDLIBS:= -llog
 LOCAL_SHARED_LIBRARIES:=TestN9
